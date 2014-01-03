@@ -1,0 +1,27 @@
+<ul class="breadcrumb">
+    <li><a href="/">Home</a> <span class="divider">/</span></li>
+    <li><a href="<%- pathTo.comments %>">comments</a> <span class="divider">/</span></li>
+    <li class="active"><a href="#">Details of comment</a></li>
+</ul>
+
+<div class="page-header">
+    <h1>Details of comment</h1>
+</div>
+
+<table class="table table-bordered">
+    <tbody>
+        <tr><th>title</th><td><%= comment.title %></td></tr>
+
+        <tr><th>content</th><td><%= comment.content %></td></tr>
+
+        <tr><th>createdAt</th><td><%= comment.createdAt %></td></tr>
+
+        <tr><th>createdBy</th><td><%= comment.createdBy %></td></tr>
+
+        <tr><th>modifiedAt</th><td><%= comment.modifiedAt %></td></tr>
+
+        <tr><th>modifiedBy</th><td><%= comment.modifiedBy %></td></tr>
+
+        <tr><th>isPublic</th><td><%= comment.isPublic %></td></tr>
+    </tbody>
+</table>

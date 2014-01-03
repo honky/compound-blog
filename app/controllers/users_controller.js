@@ -8,7 +8,7 @@ action('new', function() {
     render();
 });
 action('login', function() {
-    this.title =  t('users_controller_client.action_login_title');
+    this.title = t('users_controller_client.action_login_title');
     this.user = new User;
     flash('info', t('users_controller_client.action_login_furtherInfo'));
     render();
@@ -27,19 +27,6 @@ action('change_language', function() {
     req.session.language = params.language;
     flash('info', t('users_controller_client.action_change_language_message'));
     setLocale(params.language);
-    //if(this.session == undefined) { this.session = { }; }
-    //this.session.language = req.query.language;
-    //console.log("this.session.language: ",this.session.language);
-/*
-    console.log("req.session: ",req.session);
-    console.log("req.body: ",req.body);
-    console.log("req.query: ",req.query);
-    console.log("req.session: ",req.session);
-    console.log("req.user: ",req.user);
-    */
-    //if(req.user == undefined) { req.user = { }; }
-    //req.user.locale = req.query.language;
-    //maybe logged user needs to get his language updated here
     render();
 });
 action('verify_login', function() {
@@ -47,32 +34,37 @@ action('verify_login', function() {
     this.user = new User;
     flash('info', t('users_controller_client.action_verify_login_message'));
 
-        var userInDB = User.all({
-            "where": {
-                "name": req.body.name,
-                "password": req.body.password
-            }
-        }, function(err, user) {
-            if (err || !user) {
-                if (!err && !user && params.format === 'json') {
-                    redirect('login');
-                }
+    var userInDB = User.all({
+        "where": {
+            "name": req.body.name,
+            "password": req.body.password
+        }
+    }, function(err, user) {
+        if (err || !user) {
+            if (!err && !user && params.format === 'json') {
                 redirect('login');
+            }
+            redirect('login');
+        } else {
+            if (user == undefined || user[0].length == 0) {
+                flash('error', t('users_controller_client.action_verify_login_error'));
+                redirect('login');
+                return;
+            }
+            if (req.session.user == undefined) {
+                req.session.user = {};
+            }
+            //setting session values
+            req.session.user = user[0];
+            req.session.user.language = user[0].language;
+
+            if (req.session.user.isAdmin == true) {
+                redirect('/admin/pages/');
             } else {
-                if (user == undefined || user[0].length == 0) {
-                    flash('error', t('users_controller_client.action_verify_login_error'));
-                    redirect('login');
-                    return;
-                }
-                if (req.session.user == undefined) {
-                    req.session.user = {};
-                }
-                //setting session values
-                req.session.user = user[0];
-                req.session.user.language = user[0].language;
                 render();
             }
-        });
+        }
+    });
 });
 
 action(function create() {
@@ -125,7 +117,6 @@ action(function index() {
 });
 action(function show() {
     this.title = t('users_controller_client.action_show_title');
-    this.user = new User;
     switch (params.format) {
     case "json":
         send({

@@ -1,15 +1,32 @@
-        <div class="navbar  navbar-inverse">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="brand" href="/">Defendtheplanet</a>
-                     <ul class="nav">
-                        <li>
-                             <%- link_to('<i class="icon-user"></i> '+ t('nav.users_index'), '/users') %>
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+ <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">Defendtheplanet</a>
+  </div>
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+        <li>
+            <%- link_to(t('nav.pages_top'), '/pages_top') %>
                         </li>
                         <li>
-                             <%- link_to('<i class="icon-book"></i> '+t('nav.pages_top5'), '/top5') %>
+                             <%- link_to(t('nav.posts_top'), '/posts_top') %>
                         </li>
-                        <li> 
+                        <li>
+                             <%- link_to(t('nav.users_index'), '/users') %>
+                        </li>
+        <li><a href="#"> <%= t('locale.check') %> </a></li> 
+    </ul>
+
+
+     <ul class="nav navbar-nav navbar-right">
+        <li> 
                             <a href="/change_language/de" class="language-switch" style="display:inline; padding:3px;">
                                 <div class="flag flag-de"  alt="<%= t('nav.change2en') %>"  title="<%= t('nav.change2de') %>" /> </div>
                             </a>
@@ -29,16 +46,17 @@
                                 <div class="flag flag-es"  alt="<%= t('nav.change2es') %>"  title="<%= t('nav.change2es') %>" /> </div>
                             </a>
                         </li>
-                        <li><a href="#"> <%= t('locale.check') %> </a></li>                 
-                </ul>
-                <ul class="nav pull-right">                    
-                    <% if (typeof request.session != 'undefined' && typeof request.session.user != 'undefined'  && typeof request.session.user.name != 'undefined'  && request.session.user.name.length > 0) { %>
+      <% if (typeof request.session != 'undefined' && typeof request.session.user != 'undefined'  && typeof request.session.user.name != 'undefined'  && request.session.user.name.length > 0) { %>
                     <li class="dropdown">
                         <a class="dropdown-toggle" href="/login" data-toggle="dropdown">
-                            <span class="label label-success">  <%= request.session.user.name %> </span>
+                            <%= request.session.user.name %>
                                 <strong class="caret"></strong></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#"><%= t('nav.profile') %></a></li>
+                                <% if (request.session.user.isAdmin == true) { %>
+                                    <li><%- link_to('<i class="icon-book"></i> '+ t('nav.adminlink'), '/admin/pages') %>
+                                    </li>
+                                <% } %>
                                 <li><a href="/logout"><%= t('nav.logout') %></a></li>
                             </ul>
                     </li>
@@ -54,17 +72,29 @@
                         </div>
                     </li>
                     <% } %>
-                </ul>
-                </div>
-            </div>
+    </ul>
+  </div><!-- /.navbar-collapse -->
 
-        </div>
-
-
+  </div>
+</nav>
 
 <div class="container">
             <% var flash = request.flash('info').pop(); if (flash) { %>
                 <div class="alert alert-info">
+                    <a class="close" data-dismiss="alert">×</a>
+                    <%- flash %>
+                </div>
+            <% } %>
+
+            <% var flash = request.flash('warn').pop(); if (flash) { %>
+                <div class="alert alert-warning">
+                    <a class="close" data-dismiss="alert">×</a>
+                    <%- flash %>
+                </div>
+            <% } %>
+
+            <% var flash = request.flash('success').pop(); if (flash) { %>
+                <div class="alert alert-success">
                     <a class="close" data-dismiss="alert">×</a>
                     <%- flash %>
                 </div>
@@ -76,4 +106,4 @@
                     <%- flash %>
                 </div>
             <% }; %>
-<div>
+<div> 
