@@ -1,4 +1,4 @@
-### Welcome to the MVC+H Website ###
+### Welcome to compound-blog###
 
 This is a project nearly every Webdeveloper does from time to time - writing a blog or cms from scratch using the programming language he or she wants to learn. So do I, and I invite everybody to take part in this compound js, bootstrap 3 thing.
 
@@ -14,3 +14,12 @@ To install and run it yourself:
 7. change the credentials!
 8. ???
 9. Profit!
+
+### contact ###
+
+Please feel free to contact me, I would really enjoy programming this with somebody else.
+
+### License ###
+
+see license file, please consider that modules might be licensed differently.
+
