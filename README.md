@@ -4,22 +4,57 @@ This is a project nearly every Webdeveloper does from time to time - writing a b
 
 To install and run it yourself:
 
-1. run  ```git clone```
-2. run  ```cd compound-blog```
-3. run  ```npm install -l```
-4. run  ```compound seed```
-	this seeds the db with sample users
-5. run node server.js or use compounds console ```npm install compound -g``` and use ```compound server 8888```
-6. open a browser ```localhost:8888``` and use  ```user``` and  ```password``` as credentials to login the system
-7. change the credentials!
+1. run  ```git clone https://github.com/honky/compound-blog``` to clone the repository
+2. run  ```cd compound-blog``` to change to the considered dir
+3. run  ```npm install -l``` to install required modules (see a list at package.json)
+4. run  ```sudo npm install compound -g``` to use the compound framework
+5. run  ```compound seed``` to seed the sqlite database with sample data
+6. to run the server in debug mode use:  ```compound server 8888```
+7. open a browser ```localhost:8888``` and try  ```user``` and  ```password``` as credentials to login the system
 8. ???
 9. Profit!
+
+The system is in development, sadly far from done. 
+
+### Features ###
+
+* MVC + H with user and admin divided namespaces
+* multilanguage support by yml files
+* npm tests
+* Full usage of juggling db - no 'exceptions'
+* Session management (currently) 
+* Bootstrap
+* Markdown / including editor
+
+### TODO ###
+
+* a lot of things
+
+
+### Branching ###
+
+Please use the **feature branch** < **development branch** < **master branch** model.
+see deployBranch.sh
+
+### Models ###
+
+* Posts
+	imagine blog posts
+* Pages 
+	more static, but still from db, might need additional files, like pictures, gallerys etc
+* Comments
+	can be on pages, posts or whatever
+* Tags
+* Categories
+
+etc
+
 
 ### contact ###
 
 Please feel free to contact me, I would really enjoy programming this with somebody else.
 
-### License ###
+### license ###
 
 see license file, please consider that modules might be licensed differently.
 
