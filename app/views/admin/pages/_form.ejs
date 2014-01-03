@@ -1,0 +1,77 @@
+<%- errorMessagesFor(page) %>
+<div class="control-group">
+   <%- form.label("page_id", false, {class: "control-label"}) %>
+   <div class="controls">
+       <%- form.input("page_id") %>
+   </div>
+</div>
+<div class="control-group">
+   <%- form.label("title", false, {class: "control-label"}) %>
+   <div class="controls">
+       <%- form.input("title") %>
+   </div>
+</div>
+<div class="control-group">
+   <%- form.label("teaser", false, {class: "control-label"}) %>
+   <div class="controls">
+       <%- form.input("teaser") %>
+   </div>
+</div>
+<div class="control-group">
+   <%- form.label("content", false, {class: "control-label"}) %>
+   <div class="controls">
+       <%- form.textarea("content") %>
+   </div>
+</div>
+<div class="control-group">
+   <%- form.label("language", false, {class: "control-label"}) %>
+   <div class="controls">
+       <%- form.input("language") %>
+   </div>
+</div>
+<div class="control-group">
+   <%- form.label("created", false, {class: "control-label"}) %>
+   <div class="controls">
+       <%- form.input("created") %>
+   </div>
+</div>
+<div class="control-group">
+   <%- form.label("createdBy", false, {class: "control-label"}) %>
+   <div class="controls">
+       <%- form.input("createdBy") %>
+   </div>
+</div>
+<div class="control-group">
+   <%- form.label("modified", false, {class: "control-label"}) %>
+   <div class="controls">
+       <%- form.input("modified") %>
+   </div>
+</div>
+<div class="control-group">
+   <%- form.label("modifiedBy", false, {class: "control-label"}) %>
+   <div class="controls">
+       <%- form.input("modifiedBy") %>
+   </div>
+</div>
+<div class="control-group">
+
+   <%- form.label("isPublic", false, {class: "control-label"}) %>
+
+   <div class="controls">
+
+       <%- form.checkbox("isPublic") %>
+
+   </div>
+
+</div>
+<div class="control-group">
+
+   <%- form.label("isRegisteredOnly", false, {class: "control-label"}) %>
+
+   <div class="controls">
+
+       <%- form.checkbox("isRegisteredOnly") %>
+
+   </div>
+
+</div>

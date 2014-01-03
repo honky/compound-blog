@@ -1,0 +1,4 @@
+es:
+  locale:
+    check: "espanol"
+    change: "You changed your language successfully."

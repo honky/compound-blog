@@ -1,0 +1,18 @@
+<ul class="breadcrumb">
+    <li><a href="/">Home</a> <span class="divider">/</span></li>
+    <li><a href="<%- pathTo.pages() %>">pages</a> <span class="divider">/</span></li>
+    <li class="active"><a href="#">Edit page</a></li>
+</ul>
+
+<div class="page-header">
+    <h1>Edit page</h1>
+</div>
+
+<% var form = formFor(page, {action: pathTo.page(page), method: 'PUT', id: "page-form", class: 'form-horizontal'}) %>
+<%- form.begin() %>
+<%- include _form %>
+<div class="form-actions">
+    <%- form.submit('<i class="icon-ok icon-white"></i> Update page', {class: 'btn btn-primary'}) %> or
+    <%- linkTo('Cancel', pathTo.page(page), {class: 'btn'}) %>
+</div>
+<%- form.end() %>

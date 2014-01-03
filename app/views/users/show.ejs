@@ -1,0 +1,36 @@
+<ul class="breadcrumb">
+    <li><a href="/"><%= t('locale.home') %></a> <span class="divider">/</span></li>
+    <li><a href="<%- pathTo.users %>"><%= t('users_controller_client.users') %></a> <span class="divider">/</span></li>
+    <li class="active"><a href="#"><%= t('users_controller_client.action_show_title') %></a></li>
+</ul>
+
+<div class="page-header">
+    <h1><%= t('users_controller_client.action_show_title') %></h1>
+</div>
+
+<table class="table table-bordered">
+    <tbody>
+        <tr><th>user_id</th><td><%= user.user_id %></td></tr>
+
+        <tr><th>title</th><td><%= user.title %></td></tr>
+
+        <tr><th>email</th><td><%= user.email %></td></tr>
+
+        <tr><th>password</th><td><%= user.password %></td></tr>
+
+        <tr><th>language</th><td><%= user.language %></td></tr>
+
+        <tr><th>created</th><td><%= user.created %></td></tr>
+
+        <tr><th>createdBy</th><td><%= user.createdBy %></td></tr>
+
+        <tr><th>modified</th><td><%= user.modified %></td></tr>
+
+        <tr><th>modifiedBy</th><td><%= user.modifiedBy %></td></tr>
+
+        <tr><th>isAdmin</th><td><%= user.isAdmin %></td></tr>
+
+        <tr><th>isActivated</th><td><%= user.isActivated %></td></tr>
+    </tbody>
+</table>
+

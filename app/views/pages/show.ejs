@@ -1,0 +1,36 @@
+<ul class="breadcrumb">
+    <li><a href="/"><%= t('locale.home') %></a> <span class="divider">/</span></li>
+    <li><a href="<%- pathTo.pages %>"><%= t('pages_controller_client.pages') %></a> <span class="divider">/</span></li>
+    <li class="active"><a href="#">Details of page</a></li>
+</ul>
+
+<div class="page-header">
+    <h1>Details of page</h1>
+</div>
+
+<table class="table table-bordered">
+    <tbody>
+        <tr><th>page_id</th><td><%= page.page_id %></td></tr>
+
+        <tr><th>title</th><td><%= page.title %></td></tr>
+
+        <tr><th>teaser</th><td><%= page.teaser %></td></tr>
+
+        <tr><th>content</th><td><%= page.content %></td></tr>
+
+        <tr><th>language</th><td><%= page.language %></td></tr>
+
+        <tr><th>created</th><td><%= page.created %></td></tr>
+
+        <tr><th>createdBy</th><td><%= page.createdBy %></td></tr>
+
+        <tr><th>modified</th><td><%= page.modified %></td></tr>
+
+        <tr><th>modifiedBy</th><td><%= page.modifiedBy %></td></tr>
+
+        <tr><th>isPublic</th><td><%= page.isPublic %></td></tr>
+
+        <tr><th>isRegisteredOnly</th><td><%= page.isRegisteredOnly %></td></tr>
+    </tbody>
+</table>
+

@@ -1,0 +1,79 @@
+        <div class="navbar  navbar-inverse">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="/">Defendtheplanet</a>
+                     <ul class="nav">
+                        <li>
+                             <%- link_to('<i class="icon-user"></i> '+ t('nav.users_index'), '/users') %>
+                        </li>
+                        <li>
+                             <%- link_to('<i class="icon-book"></i> '+t('nav.pages_top5'), '/top5') %>
+                        </li>
+                        <li> 
+                            <a href="/change_language/de" class="language-switch" style="display:inline; padding:3px;">
+                                <div class="flag flag-de"  alt="<%= t('nav.change2en') %>"  title="<%= t('nav.change2de') %>" /> </div>
+                            </a>
+                        </li>
+                        <li> 
+                            <a href="/change_language/en" class="language-switch" style="display:inline; padding:3px;">
+                                <div class="flag flag-gb" alt="<%= t('nav.change2en') %>" title="<%= t('nav.change2en') %>" />  </div>
+                            </a>
+                        </li>
+                        <li> 
+                            <a href="/change_language/fr" class="language-switch" style="display:inline; padding:3px;">
+                                <div class="flag flag-fr"  alt="<%= t('nav.change2fr') %>" title="<%= t('nav.change2fr') %>" /> </div>
+                            </a>
+                        </li>
+                        <li> 
+                            <a href="/change_language/es" class="language-switch" style="display:inline; padding:3px;">
+                                <div class="flag flag-es"  alt="<%= t('nav.change2es') %>"  title="<%= t('nav.change2es') %>" /> </div>
+                            </a>
+                        </li>
+                        <li><a href="#"> <%= t('locale.check') %> </a></li>                 
+                </ul>
+                <ul class="nav pull-right">                    
+                    <% if (typeof request.session != 'undefined' && typeof request.session.user != 'undefined'  && typeof request.session.user.name != 'undefined'  && request.session.user.name.length > 0) { %>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="/login" data-toggle="dropdown">
+                            <span class="label label-success">  <%= request.session.user.name %> </span>
+                                <strong class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><%= t('nav.profile') %></a></li>
+                                <li><a href="/logout"><%= t('nav.logout') %></a></li>
+                            </ul>
+                    </li>
+                    
+                    <% } else { %>
+                    <li>
+                        <%- link_to('<i class="icon-edit icon-white"></i> '+t('nav.signup'), pathTo.signup) %>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="/<%= pathTo.login %>" data-toggle="dropdown"> <%= t('nav.login') %><strong class="caret"></strong></a>
+                        <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+                            <%- include ../users/_login_form %>
+                        </div>
+                    </li>
+                    <% } %>
+                </ul>
+                </div>
+            </div>
+
+        </div>
+
+
+
+<div class="container">
+            <% var flash = request.flash('info').pop(); if (flash) { %>
+                <div class="alert alert-info">
+                    <a class="close" data-dismiss="alert">×</a>
+                    <%- flash %>
+                </div>
+            <% } %>
+
+            <% flash = request.flash('error').pop(); if (flash) { %>
+                <div class="alert alert-error">
+                    <a class="close" data-dismiss="alert">×</a>
+                    <%- flash %>
+                </div>
+            <% }; %>
+<div>

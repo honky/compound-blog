@@ -1,0 +1,4 @@
+fr:
+  locale:
+    check: "francaise"
+    change: "You changed your language successfully."
