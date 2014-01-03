@@ -1,0 +1,31 @@
+<ul class="breadcrumb">
+    <li><a href="/"><%= t('locale.home') %></a> <span class="divider">/</span></li>
+    <li class="active"><a href="<%- pathTo.posts() %>"><%= t('posts_controller_client.posts') %></a> <span class="divider">/</span></li>
+</ul>
+
+<div class="page-header">
+    <h1><%= t('posts_controller_client.action_show_title') %></h1>
+</div>
+
+<table class="table table-bordered">
+    <tbody>
+        <tr><th>title</th><td><%= post.title %></td></tr>
+
+        <tr><th>teaser</th><td><%= post.teaser %></td></tr>
+
+        <tr><th>content</th><td><%= post.content %></td></tr>
+
+        <tr><th>createdAt</th><td><%= post.createdAt %></td></tr>
+
+        <tr><th>createdBy</th><td><%= post.createdBy %></td></tr>
+
+        <tr><th>modifiedAt</th><td><%= post.modifiedAt %></td></tr>
+
+        <tr><th>modifiedBy</th><td><%= post.modifiedBy %></td></tr>
+
+        <tr><th>isPublic</th><td><%= post.isPublic %></td></tr>
+
+        <tr><th>isUserRequired</th><td><%= post.isUserRequired %></td></tr>
+    </tbody>
+</table>
+

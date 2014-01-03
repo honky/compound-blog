@@ -1,11 +1,11 @@
 <ul class="breadcrumb">
     <li><a href="/"><%= t('locale.home') %></a> <span class="divider">/</span></li>
     <li><a href="<%- pathTo.pages %>"><%= t('pages_controller_client.pages') %></a> <span class="divider">/</span></li>
-    <li class="active"><a href="#">Details of page</a></li>
+    <li class="active"><a href="#"><%= t('pages_controller_client.action_show_title') %></a></li>
 </ul>
 
 <div class="page-header">
-    <h1>Details of page</h1>
+    <h1><%= t('pages_controller_client.action_show_title') %></h1>
 </div>
 
 <table class="table table-bordered">
@@ -16,7 +16,7 @@
 
         <tr><th>teaser</th><td><%= page.teaser %></td></tr>
 
-        <tr><th>content</th><td><%= page.content %></td></tr>
+        <tr><th>content</th><td><%- page.content_formated() %></td></tr>
 
         <tr><th>language</th><td><%= page.language %></td></tr>
 
@@ -31,6 +31,10 @@
         <tr><th>isPublic</th><td><%= page.isPublic %></td></tr>
 
         <tr><th>isRegisteredOnly</th><td><%= page.isRegisteredOnly %></td></tr>
+        <tr><th>Tags</th><td><pre><%- JSON.stringify(page.tags_fetched) %></pre>
+        <tr><th>Categories</th><td><pre><%= JSON.stringify(page.categories_fetched) %></pre></td></tr>
+        <tr><th>Comments</th><td><pre><%= JSON.stringify(page.comments_fetched) %></pre><br/>
+        <a href="<%- pathTo.page_comments(page) %>">show comments of this page </a> </td></tr>
     </tbody>
 </table>
 

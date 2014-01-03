@@ -1,14 +1,18 @@
 module.exports = function (compound) {
   var defaultModules = [
       'jugglingdb',
-      'co-assets-compiler'
+      'co-assets-compiler',
+      'marked',
+      'everyauth'
     ], developmentModules = [];
 
   if ('development' === compound.app.get('env')) {
     developmentModules = [
       'ejs-ext',
       'seedjs',
-      'co-generators'
+      'co-generators',
+      'marked',
+      'everyauth'
     ]
   }
 

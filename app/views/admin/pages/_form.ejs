@@ -20,8 +20,57 @@
 <div class="control-group">
    <%- form.label("content", false, {class: "control-label"}) %>
    <div class="controls">
-       <%- form.textarea("content") %>
+    <div style="display:none;">
+       <%- form.textarea("content", { "id" : "content_textarea" }) %>
+    </div>
    </div>
+   <div id="epiceditor"> If you can read this, there might be a problem with your EpicEditor</div>
+   <script> $(function() { console.log("abc"); 
+
+        var opts = {
+            container: 'epiceditor',
+            textarea: 'content_textarea',
+            basePath: '/stylesheets/epic/',
+            clientSideStorage: true,
+            localStorageName: 'epiceditor',
+            useNativeFullscreen: true,
+            parser: marked,
+            file: {
+              name: 'epiceditor',
+              defaultContent: '',
+              autoSave: 100
+            },
+            theme: {
+              base: 'themes/base/epiceditor.css',
+              preview: 'themes/preview/preview-dark.css',
+              editor: 'themes/editor/epic-dark.css'
+            },
+            button: {
+              preview: true,
+              fullscreen: true,
+              bar: "auto"
+            },
+            focusOnLoad: false,
+            shortcut: {
+              modifier: 18,
+              fullscreen: 70,
+              preview: 80
+            },
+            string: {
+              togglePreview: 'Toggle Preview Mode',
+              toggleEdit: 'Toggle Edit Mode',
+              toggleFullscreen: 'Enter Fullscreen'
+            },
+            autogrow: false
+          }
+          var editor = new EpicEditor(opts);
+          editor.load();
+          console.log("done",editor);
+          editor.load(function () {
+              console.log("Editor loaded.")
+            });
+
+        }); </script>
 </div>
 <div class="control-group">
    <%- form.label("language", false, {class: "control-label"}) %>

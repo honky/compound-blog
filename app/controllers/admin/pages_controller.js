@@ -1,26 +1,35 @@
 load('application');
 
+before(use('adminRequired'));
+
 before(loadPage, {
     only: ['show', 'edit', 'update', 'destroy']
-    });
+});
 
-action('new', function () {
+
+action('new', function() {
     this.title = 'New page';
     this.page = new Page;
     render();
 });
 
 action(function create() {
-    Page.create(req.body.Page, function (err, page) {
-        respondTo(function (format) {
-            format.json(function () {
+    Page.create(req.body.Page, function(err, page) {
+        respondTo(function(format) {
+            format.json(function() {
                 if (err) {
-                    send({code: 500, error: page && page.errors || err});
+                    send({
+                        code: 500,
+                        error: page && page.errors || err
+                    });
                 } else {
-                    send({code: 200, data: page.toObject()});
+                    send({
+                        code: 200,
+                        data: page.toObject()
+                    });
                 }
             });
-            format.html(function () {
+            format.html(function() {
                 if (err) {
                     flash('error', 'Page can not be created');
                     render('new', {
@@ -38,15 +47,18 @@ action(function create() {
 
 action(function index() {
     this.title = 'Pages index';
-    Page.all(function (err, pages) {
+    Page.all(function(err, pages) {
         switch (params.format) {
-            case "json":
-                send({code: 200, data: pages});
-                break;
-            default:
-                render({
-                    pages: pages
-                });
+        case "json":
+            send({
+                code: 200,
+                data: pages
+            });
+            break;
+        default:
+            render({
+                pages: pages
+            });
         }
     });
 });
@@ -58,54 +70,71 @@ action(function top5() {
     flash("info", JSON.stringify(params.language));
     flash("info", JSON.stringify(req.body));
 
-    Page.all({ "order":"created desc", "where" : { "language" : "de"} }, function (err, pages) {
+    Page.all({
+        "order": "created desc",
+        "where": {
+            "language": "de"
+        }
+    }, function(err, pages) {
         switch (params.format) {
-            case "json":
-                send({code: 200, data: pages});
-                break;
-            default:
-                render({
-                    pages: pages
-                });
+        case "json":
+            send({
+                code: 200,
+                data: pages
+            });
+            break;
+        default:
+            render({
+                pages: pages
+            });
         }
     });
 });
 
 action(function show() {
     this.title = 'Page show';
-    switch(params.format) {
-        case "json":
-            send({code: 200, data: this.page});
-            break;
-        default:
-            render();
+    switch (params.format) {
+    case "json":
+        send({
+            code: 200,
+            data: this.page
+        });
+        break;
+    default:
+        render();
     }
 });
 
 action(function edit() {
     this.title = 'Page edit';
-    switch(params.format) {
-        case "json":
-            send(this.page);
-            break;
-        default:
-            render();
+    switch (params.format) {
+    case "json":
+        send(this.page);
+        break;
+    default:
+        render();
     }
 });
 
 action(function update() {
     var page = this.page;
     this.title = 'Edit page details';
-    this.page.updateAttributes(body.Page, function (err) {
-        respondTo(function (format) {
-            format.json(function () {
+    this.page.updateAttributes(body.Page, function(err) {
+        respondTo(function(format) {
+            format.json(function() {
                 if (err) {
-                    send({code: 500, error: page && page.errors || err});
+                    send({
+                        code: 500,
+                        error: page && page.errors || err
+                    });
                 } else {
-                    send({code: 200, data: page});
+                    send({
+                        code: 200,
+                        data: page
+                    });
                 }
             });
-            format.html(function () {
+            format.html(function() {
                 if (!err) {
                     flash('info', 'Page updated');
                     redirect(path_to.page(page));
@@ -119,16 +148,21 @@ action(function update() {
 });
 
 action(function destroy() {
-    this.page.destroy(function (error) {
-        respondTo(function (format) {
-            format.json(function () {
+    this.page.destroy(function(error) {
+        respondTo(function(format) {
+            format.json(function() {
                 if (error) {
-                    send({code: 500, error: error});
+                    send({
+                        code: 500,
+                        error: error
+                    });
                 } else {
-                    send({code: 200});
+                    send({
+                        code: 200
+                    });
                 }
             });
-            format.html(function () {
+            format.html(function() {
                 if (error) {
                     flash('error', 'Can not destroy page');
                 } else {
@@ -141,10 +175,13 @@ action(function destroy() {
 });
 
 function loadPage() {
-    Page.find(params.id, function (err, page) {
+    Page.find(params.id, function(err, page) {
         if (err || !page) {
             if (!err && !page && params.format === 'json') {
-                return send({code: 404, error: 'Not found'});
+                return send({
+                    code: 404,
+                    error: 'Not found'
+                });
             }
             redirect(path_to.pages);
         } else {

@@ -58,9 +58,15 @@ var User = describe('User', function() {
     property('email', {
         type: String,
         limit: 150
-    }, { index: true });
-    property('password', String, { index: true });
-    property('language', String, { index: true });
+    }, {
+        index: true
+    });
+    property('password', String, {
+        index: true
+    });
+    property('language', String, {
+        index: true
+    });
     property('created', {
         type: Date,
         default: function() {
@@ -84,4 +90,97 @@ var User = describe('User', function() {
         default: true
     });
     set('restPath', pathTo.users);
+});
+var Comment = describe('Comment', function() {
+    property('title', String);
+    property('content', String);
+    property('created', {
+        type: Date,
+        default: function() {
+            if (this.created == undefined) {
+                return new Date;
+            }
+        }
+    });
+    property('createdBy', String);
+    property('modified', {
+        type: Date,
+        default: function() {
+            return new Date;
+        }
+    });
+    property('modifiedBy', String);
+    property('isPublic', Boolean, {
+        default: function() {
+            return true;
+        }
+    });
+    set('restPath', pathTo.comments);
+});
+Page.hasMany(Comment, {
+    as: 'comments',
+    foreignKey: 'page_id'
+});
+Comment.belongsTo(Page, {
+    as: 'pages',
+    foreignKey: 'page_id'
+});
+/*
+User.hasMany(Page, {
+    as: 'posts',
+    foreignKey: 'userId'
+});
+
+Page.belongsTo(User, {
+    as: 'author',
+    foreignKey: 'userId'
+});
+*/
+var Post = describe('Post', function() {
+    property('title', String);
+    property('teaser', String);
+    property('content', String);
+    property('createdAt', Date);
+    property('createdBy', String);
+    property('modifiedAt', Date);
+    property('modifiedBy', String);
+    property('isPublic', Boolean);
+    property('isUserRequired', Boolean);
+    set('restPath', pathTo.posts);
+});
+Post.hasMany(Comment, {
+    as: 'comments',
+    foreignKey: 'post_id'
+});
+Comment.belongsTo(Post, {
+    as: 'posts',
+    foreignKey: 'post_id'
+});
+var Category = describe('Category', function() {
+    property('name', String);
+    property('color', String);
+    set('restPath', pathTo.categories);
+});
+var Tag = describe('Tag', function() {
+    property('name', String);
+    property('color', String);
+    set('restPath', pathTo.tags);
+});
+Page.hasMany(Tag, {
+    foreignKey: 'page_id'
+});
+Tag.belongsTo(Page, {
+    foreignKey: 'page_id'
+});
+Post.hasMany(Tag, {
+    foreignKey: 'post_id'
+});
+Tag.belongsTo(Post, {
+    foreignKey: 'post_id'
+});
+Page.hasMany(Category, {
+    foreignKey: 'page_id'
+});
+Category.belongsTo(Page, {
+    foreignKey: 'page_id'
 });

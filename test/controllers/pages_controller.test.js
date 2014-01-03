@@ -28,15 +28,15 @@ describe('PageController', function() {
     });
 
     /*
-     * GET /pages/new
-     * Should render pages/new.ejs
+     * GET /pages_top
+     * Should render pages/top.ejs
      */
-    it('should render "new" template on GET /pages/new', function (done) {
+    it('should render "top" template on GET /pages_top', function (done) {
         request(app)
-        .get('/pages/new')
+        .get('/pages_top')
         .end(function (err, res) {
             res.statusCode.should.equal(200);
-            app.didRender(/pages\/new\.ejs$/i).should.be.true;
+            app.didRender(/pages\/top\.ejs$/i).should.be.true;
             done();
         });
     });

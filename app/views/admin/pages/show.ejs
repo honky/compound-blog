@@ -1,6 +1,6 @@
 <ul class="breadcrumb">
     <li><a href="/">Home</a> <span class="divider">/</span></li>
-    <li><a href="<%- pathTo.pages %>">pages</a> <span class="divider">/</span></li>
+    <li><a href="<%- pathTo.admin_pages %>">pages</a> <span class="divider">/</span></li>
     <li class="active"><a href="#">Details of page</a></li>
 </ul>
 
@@ -35,8 +35,8 @@
 </table>
 
 <div class="well">
-    <%- link_to('<i class="icon-edit icon-white"></i> Edit', pathTo.edit_page(page), {class: 'btn btn-primary'}) %>
-    <%- link_to('<i class="icon-remove icon-white"></i> Delete', pathTo.page(page), {class: 'btn btn-danger', method: 'delete', remote: true, jsonp: '(function (u) { location.href = u; })'}) %>
+    <%- link_to('<i class="icon-edit icon-white"></i> Edit', pathTo.edit_admin_page(page), {class: 'btn btn-primary'}) %>
+    <%- link_to('<i class="icon-remove icon-white"></i> Delete', pathTo.admin_page(page), {class: 'btn btn-danger', method: 'delete', remote: true, jsonp: '(function (u) { location.href = u; })'}) %>
     or
-    <%- link_to('Back to index', pathTo.pages) %>
+    <%- link_to('Back to index', pathTo.admin_pages) %>
 </div>

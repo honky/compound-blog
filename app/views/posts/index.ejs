@@ -1,0 +1,41 @@
+<ul class="breadcrumb">
+    <li><a href="/"><%= t('locale.home') %></a> <span class="divider">/</span></li>
+    <li class="active"><a href="<%- pathTo.posts() %>"><%= t('posts_controller_client.posts') %></a> <span class="divider">/</span></li>
+</ul>
+
+<div class="page-header">
+    <h1><%= t('posts_controller_client.action_index_title') %></h1>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <% if (posts.length > 0) { %>
+        <table class="table table-striped sortable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Teaser</th>
+                    <th>Content</th>
+                    <th>language</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% posts.forEach(function (post) { %>
+                <tr>
+                    <td><strong><%- link_to('post #' + post.id, pathTo.post(post)) %></strong></td>
+                    <td> <%- post.title %> </td>
+                    <td> <%- post.teaser %> </td>
+                    <td> <%- post.content %> </td>
+                    <td> <%- post.language %> </td>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        <% } else { %>
+        <p class="alert alert-block alert-info">
+            <strong>No posts were found.</strong>
+        </p>
+        <% } %>
+    </div>
+</div>
