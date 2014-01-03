@@ -36,25 +36,28 @@ The system is in development, sadly far from done.
 Please use the **feature branch** < **development branch** < **master branch** model.
 see deployBranch.sh
 
+For developing, and seeing the latest features, use the development branch, and branch of for your feature.
+After submitting working code, merge feature branch and development. 
+
 ### Models ###
 
 * Posts
 	imagine blog posts
 * Pages 
 	more static, but still from db, might need additional files, like pictures, gallerys etc
-* Comments
+* Comments - development only
 	can be on pages, posts or whatever
-* Tags
-* Categories
+* Tags - development only
+* Categories - development only
 
 etc
 
 
-### contact ###
+### Contact ###
 
 Please feel free to contact me, I would really enjoy programming this with somebody else.
 
-### license ###
+### License ###
 
 see license file, please consider that modules might be licensed differently.
 
