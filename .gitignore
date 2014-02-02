@@ -18,5 +18,6 @@ coverage.html
 doc
 cache_*.js
 cache_*.css
-.sqlite3
+*.sqlite3
+db/*.sqlite3
 

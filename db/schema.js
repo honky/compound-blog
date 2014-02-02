@@ -49,6 +49,7 @@ var Page = describe('Page', function() {
     property('isRegisteredOnly', Boolean);
     set('restPath', pathTo.pages);
 });
+
 var User = describe('User', function() {
     property('user_id', {
         type: String,
@@ -140,11 +141,28 @@ var Post = describe('Post', function() {
     property('title', String);
     property('teaser', String);
     property('content', String);
-    property('createdAt', Date);
+    property('language', String);
+    property('created', {
+        type: Date,
+        default: function() {
+            if (this.created == undefined) {
+                return new Date;
+            }
+        }
+    });
     property('createdBy', String);
-    property('modifiedAt', Date);
+    property('modified', {
+        type: Date,
+        default: function() {
+            return new Date;
+        }
+    });
     property('modifiedBy', String);
-    property('isPublic', Boolean);
+    property('isPublic', Boolean, {
+        default: function() {
+            return true;
+        }
+    });
     property('isUserRequired', Boolean);
     set('restPath', pathTo.posts);
 });
@@ -156,6 +174,8 @@ Comment.belongsTo(Post, {
     as: 'posts',
     foreignKey: 'post_id'
 });
+
+
 var Category = describe('Category', function() {
     property('name', String);
     property('color', String);
@@ -166,6 +186,8 @@ var Tag = describe('Tag', function() {
     property('color', String);
     set('restPath', pathTo.tags);
 });
+
+
 Page.hasMany(Tag, {
     foreignKey: 'page_id'
 });
