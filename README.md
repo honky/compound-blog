@@ -8,11 +8,12 @@ To install and run it yourself:
 2. run  ```cd compound-blog``` to change to the considered dir
 3. run  ```npm install -l``` to install required modules (see a list at package.json)
 4. run  ```sudo npm install compound -g``` to use the compound framework
-5. run  ```compound seed``` to seed the sqlite database with sample data
-6. to run the server in debug mode use:  ```compound server 8888```
-7. open a browser ```localhost:8888``` and try  ```user``` and  ```password``` as credentials to login the system
-8. ???
-9. Profit!
+5. run  ```compound db update``` to create the sqlite database tables
+6. run  ```compound seed``` to seed the sqlite database with sample data
+7. to run the server in debug mode use:  ```compound server 8888```
+8. open a browser ```localhost:8888``` and try  ```user``` and  ```password``` as credentials to login the system
+9. ???
+10. Profit!
 
 The system is in development, sadly far from done. 
 
