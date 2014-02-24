@@ -5,6 +5,7 @@ var users = [{
     email: 'user@password.en',
     password: 'password',
     language: 'en',
+    isAdmin: 'true',
     CreatedBy: 'Seeding',
     ModifiedBy: 'Seeding'
 }, {
