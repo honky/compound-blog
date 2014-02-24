@@ -1,4 +1,4 @@
-console.log('Seeding pages...');
+console.log('Seeding pages...'); 
 var pages = [{
 	title: 'title1',
 	teaser: 'teaser1',
