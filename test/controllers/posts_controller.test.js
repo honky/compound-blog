@@ -26,15 +26,15 @@ describe('PostController', function() {
     });
 
     /*
-     * GET /posts/new
+     * GET /admin/posts/new
      * Should render posts/new.ejs
      */
-    it('should render "new" template on GET /posts/new', function (done) {
+    it('should render "new" template on GET /admin/posts/new', function (done) {
         request(app)
-        .get('/posts/new')
+        .get('/admin/posts/new')
         .end(function (err, res) {
             res.statusCode.should.equal(200);
-            app.didRender(/posts\/new\.ejs$/i).should.be.true;
+            app.didRender(/admin\/posts\/new\.ejs$/i).should.be.true;
             done();
         });
     });
@@ -54,10 +54,10 @@ describe('PostController', function() {
     });
 
     /*
-     * GET /posts/:id/edit
+     * GET /admin/posts/:id/edit
      * Should access Post#find and render posts/edit.ejs
      */
-    it('should access Post#find and render "edit" template on GET /posts/:id/edit', function (done) {
+    it('should access Post#find and render "edit" template on GET /admin/posts/:id/edit', function (done) {
         var Post = app.models.Post;
 
         // Mock Post#find
@@ -66,21 +66,21 @@ describe('PostController', function() {
         });
 
         request(app)
-        .get('/posts/42/edit')
+        .get('/admin/posts/42/edit')
         .end(function (err, res) {
             res.statusCode.should.equal(200);
             Post.find.calledWith('42').should.be.true;
-            app.didRender(/posts\/edit\.ejs$/i).should.be.true;
+            app.didRender(/admin\/posts\/edit\.ejs$/i).should.be.true;
 
             done();
         });
     });
 
     /*
-     * GET /posts/:id
+     * GET /admin/posts/:id
      * Should render posts/index.ejs
      */
-    it('should access Post#find and render "show" template on GET /posts/:id', function (done) {
+    it('should access Post#find and render "show" template on GET /admin/posts/:id', function (done) {
         var Post = app.models.Post;
 
         // Mock Post#find
@@ -89,11 +89,11 @@ describe('PostController', function() {
         });
 
         request(app)
-        .get('/posts/42')
+        .get('/admin/posts/42')
         .end(function (err, res) {
             res.statusCode.should.equal(200);
             Post.find.calledWith('42').should.be.true;
-            app.didRender(/posts\/show\.ejs$/i).should.be.true;
+            app.didRender(/admin\/posts\/show\.ejs$/i).should.be.true;
 
             done();
         });
@@ -103,7 +103,7 @@ describe('PostController', function() {
      * POST /posts
      * Should access Post#create when Post is valid
      */
-    it('should access Post#create on POST /posts with a valid Post', function (done) {
+    it('should access Post#create on POST /admin/posts with a valid Post', function (done) {
         var Post = app.models.Post
         , post = new PostStub;
 
@@ -113,7 +113,7 @@ describe('PostController', function() {
         });
 
         request(app)
-        .post('/posts')
+        .post('/admin/posts')
         .send({ "Post": post })
         .end(function (err, res) {
             res.statusCode.should.equal(302);
@@ -137,7 +137,7 @@ describe('PostController', function() {
         });
 
         request(app)
-        .post('/posts')
+        .post('/admin/posts')
         .send({ "Post": post })
         .end(function (err, res) {
             res.statusCode.should.equal(200);
@@ -150,38 +150,10 @@ describe('PostController', function() {
     });
 
     /*
-     * PUT /posts/:id
-     * Should redirect back to /posts when Post is valid
-     */
-    it('should redirect on PUT /posts/:id with a valid Post', function (done) {
-        var Post = app.models.Post
-        , post = new PostStub;
-
-        Post.find = sinon.spy(function (id, callback) {
-            callback(null, {
-                id: 1,
-                updateAttributes: function (data, cb) { cb(null) }
-            });
-        });
-
-        request(app)
-        .put('/posts/1')
-        .send({ "Post": post })
-        .end(function (err, res) {
-            res.statusCode.should.equal(302);
-            res.header['location'].should.include('/posts/1');
-
-            app.didFlash('error').should.be.false;
-
-            done();
-        });
-    });
-
-    /*
-     * PUT /posts/:id
+     * PUT /admin/posts/:id
      * Should not redirect when Post is invalid
      */
-    it('should fail / not redirect on PUT /posts/:id with an invalid Post', function (done) {
+    it('should fail / not redirect on PUT /admin/posts/:id with an invalid Post', function (done) {
         var Post = app.models.Post
         , post = new PostStub;
 
@@ -193,7 +165,7 @@ describe('PostController', function() {
         });
 
         request(app)
-        .put('/posts/1')
+        .put('/admin/posts/1')
         .send({ "Post": post })
         .end(function (err, res) {
             res.statusCode.should.equal(200);
@@ -204,14 +176,14 @@ describe('PostController', function() {
     });
 
     /*
-     * DELETE /posts/:id
+     * DELETE /admin/posts/:id
      * -- TODO: IMPLEMENT --
      */
-    it('should delete a Post on DELETE /posts/:id');
+    it('should delete a Post on DELETE /admin/posts/:id');
 
     /*
-     * DELETE /posts/:id
+     * DELETE /admin/posts/:id
      * -- TODO: IMPLEMENT FAILURE --
      */
-    it('should not delete a Post on DELETE /posts/:id if it fails');
+    it('should not delete a Post on DELETE /admin/posts/:id if it fails');
 });

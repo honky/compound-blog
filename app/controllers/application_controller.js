@@ -1,3 +1,4 @@
+
 before('protect from forgery', function() {
 	protectFromForgery('57b41767946asda921238e296d52cfa0fed709d927ff07');
 	var locale = req.session ? (req.session.language ? req.session.language : "de") : 'en';
@@ -31,9 +32,15 @@ function userRequired() {
 
 publish('adminRequired', adminRequired);
 
-function adminRequired() {
+function adminRequired() { 
 
 	var isAdmin = false;
+
+	if ('test' === process.env.NODE_ENV) { //is this an security issue?
+		isAdmin = true;
+		next();
+	}	
+
 	if (req.session) {
 		if (req.session.user) {
 			console.log(req.session.user);
