@@ -4,16 +4,16 @@ module.exports = function(compound) {
     switch (action) {
         case 'migrate':
         case 'update':
-        perform(action, process.exit);
-        break;
+            perform(action, process.exit);
+            break;
         default:
-        console.log('Unknown action', action);
-        break;
+            console.log('Unknown action', action);
+            break;
     }
 
     function getUniqueSchemas() {
         var schemas = [];
-        Object.keys(compound.models).forEach(function (modelName) {
+        Object.keys(compound.models).forEach(function(modelName) {
             var Model = compound.models[modelName];
             var schema = Model.schema;
             if (!~schemas.indexOf(schema)) {
@@ -26,17 +26,18 @@ module.exports = function(compound) {
     function perform(action, callback) {
         console.log('Perform', action, 'on');
         var wait = 0;
-        getUniqueSchemas().forEach(function (schema) {
+        getUniqueSchemas().forEach(function(schema) {
             if (schema['auto' + action]) {
                 console.log(' - ' + schema.name);
                 wait += 1;
-                process.nextTick(function () {
+                process.nextTick(function() {
                     schema['auto' + action](done);
                 });
             }
         });
 
-        if (wait === 0) done(); else console.log(wait);
+        if (wait === 0) done();
+        else console.log(wait);
 
         function done() {
             if (--wait === 0) callback();
@@ -48,8 +49,7 @@ module.exports = function(compound) {
 };
 
 module.exports.help = {
-        shortcut:    'db',
-        usage:       'db [migrate|update]',
-        description: 'Migrate or update database(s)'
-    };
-
+    shortcut: 'db',
+    usage: 'db [migrate|update]',
+    description: 'Migrate or update database(s)'
+};

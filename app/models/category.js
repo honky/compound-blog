@@ -1,3 +1,3 @@
-module.exports = function (compound, Category) {
-  // define Category here
+module.exports = function(compound, Category) {
+	// define Category here
 };

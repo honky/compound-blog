@@ -10,7 +10,7 @@ cluster = require('cluster');
 
 numCPUs = require('os').cpus().length;
 
-console.log("numCPUs: ",numCPUs);
+console.log("numCPUs: ", numCPUs);
 
 if (!module.parent) {
 	port = process.env.PORT || 8888;
@@ -34,5 +34,5 @@ if (!module.parent) {
 
 //just keep it running
 process.on('uncaughtException', function(err) {
-    console.warn(err);
+	console.warn(err);
 });

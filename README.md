@@ -51,8 +51,9 @@ After submitting working code, merge feature branch and development.
 * Tags - development only
 * Categories - development only
 
-etc
+### Tests ###
 
+Let Nyan fly at ```./run_tests.sh```
 
 ### Contact ###
 

@@ -1,10 +1,11 @@
-module.exports = function (compound) {
+module.exports = function(compound) {
   var defaultModules = [
-      'jugglingdb',
-      'co-assets-compiler',
-      'marked',
-      'everyauth'
-    ], developmentModules = [];
+    'jugglingdb',
+    'co-assets-compiler',
+    'marked',
+    'everyauth'
+  ],
+    developmentModules = [];
 
   if ('development' === compound.app.get('env')) {
     developmentModules = [
@@ -22,4 +23,3 @@ module.exports = function (compound) {
     return []
   }
 };
-

@@ -35,5 +35,5 @@ var users = [{
 users.forEach(function(obj) {
     User.create(obj, function(users) {
         console.log('Added: ', users);
-    });  
+    });
 });

@@ -8,8 +8,7 @@ Controller.prototype.t = function() {
         this._t = this.compound.T();
         this._t.locale = this.app.settings.defaultLocale || 'fu';
 
-        if(this.context.req.session != undefined && this.context.req.session.language!=undefined)
-        {
+        if (this.context.req.session != undefined && this.context.req.session.language != undefined) {
             this._t.locale = this.context.req.session.language;
         }
         this._T = this.compound.T;

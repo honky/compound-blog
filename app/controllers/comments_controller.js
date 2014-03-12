@@ -1,27 +1,35 @@
 load('application');
-before(use('userRequired'), { "execpt" : ["show","index"] });
+before(use('userRequired'), {
+    "execpt": ["show", "index"]
+});
 
 before(loadComment, {
     only: ['show', 'edit', 'update', 'destroy']
-    });
+});
 
-action('new', function () {
+action('new', function() {
     this.title = 'New comment';
     this.comment = new Comment;
     render();
 });
 
 action(function create() {
-    Comment.create(req.body.Comment, function (err, comment) {
-        respondTo(function (format) {
-            format.json(function () {
+    Comment.create(req.body.Comment, function(err, comment) {
+        respondTo(function(format) {
+            format.json(function() {
                 if (err) {
-                    send({code: 500, error: comment && comment.errors || err});
+                    send({
+                        code: 500,
+                        error: comment && comment.errors || err
+                    });
                 } else {
-                    send({code: 200, data: comment.toObject()});
+                    send({
+                        code: 200,
+                        data: comment.toObject()
+                    });
                 }
             });
-            format.html(function () {
+            format.html(function() {
                 if (err) {
                     flash('error', 'Comment can not be created');
                     render('new', {
@@ -40,12 +48,18 @@ action(function create() {
 action(function index() {
     this.title = 'Comments index';
     console.log(params);
-    if(params.page_id)
-    {
-        Comment.all({ "where": { "page_id" : params.page_id } }, function (err, comments) {
+    if (params.page_id) {
+        Comment.all({
+            "where": {
+                "page_id": params.page_id
+            }
+        }, function(err, comments) {
             switch (params.format) {
                 case "json":
-                    send({code: 200, data: comments});
+                    send({
+                        code: 200,
+                        data: comments
+                    });
                     break;
                 default:
                     render({
@@ -53,13 +67,14 @@ action(function index() {
                     });
             }
         });
-    }
-    else
-    {
-        Comment.all(function (err, comments) {
+    } else {
+        Comment.all(function(err, comments) {
             switch (params.format) {
                 case "json":
-                    send({code: 200, data: comments});
+                    send({
+                        code: 200,
+                        data: comments
+                    });
                     break;
                 default:
                     render({
@@ -72,9 +87,12 @@ action(function index() {
 
 action(function show() {
     this.title = 'Comment show';
-    switch(params.format) {
+    switch (params.format) {
         case "json":
-            send({code: 200, data: this.comment});
+            send({
+                code: 200,
+                data: this.comment
+            });
             break;
         default:
             render();
@@ -83,7 +101,7 @@ action(function show() {
 
 action(function edit() {
     this.title = 'Comment edit';
-    switch(params.format) {
+    switch (params.format) {
         case "json":
             send(this.comment);
             break;
@@ -95,16 +113,22 @@ action(function edit() {
 action(function update() {
     var comment = this.comment;
     this.title = 'Edit comment details';
-    this.comment.updateAttributes(body.Comment, function (err) {
-        respondTo(function (format) {
-            format.json(function () {
+    this.comment.updateAttributes(body.Comment, function(err) {
+        respondTo(function(format) {
+            format.json(function() {
                 if (err) {
-                    send({code: 500, error: comment && comment.errors || err});
+                    send({
+                        code: 500,
+                        error: comment && comment.errors || err
+                    });
                 } else {
-                    send({code: 200, data: comment});
+                    send({
+                        code: 200,
+                        data: comment
+                    });
                 }
             });
-            format.html(function () {
+            format.html(function() {
                 if (!err) {
                     flash('info', 'Comment updated');
                     redirect(path_to.comment(comment));
@@ -118,16 +142,21 @@ action(function update() {
 });
 
 action(function destroy() {
-    this.comment.destroy(function (error) {
-        respondTo(function (format) {
-            format.json(function () {
+    this.comment.destroy(function(error) {
+        respondTo(function(format) {
+            format.json(function() {
                 if (error) {
-                    send({code: 500, error: error});
+                    send({
+                        code: 500,
+                        error: error
+                    });
                 } else {
-                    send({code: 200});
+                    send({
+                        code: 200
+                    });
                 }
             });
-            format.html(function () {
+            format.html(function() {
                 if (error) {
                     flash('error', 'Can not destroy comment');
                 } else {
@@ -140,10 +169,13 @@ action(function destroy() {
 });
 
 function loadComment() {
-    Comment.find(params.id, function (err, comment) {
+    Comment.find(params.id, function(err, comment) {
         if (err || !comment) {
             if (!err && !comment && params.format === 'json') {
-                return send({code: 404, error: 'Not found'});
+                return send({
+                    code: 404,
+                    error: 'Not found'
+                });
             }
             redirect(path_to.comments);
         } else {

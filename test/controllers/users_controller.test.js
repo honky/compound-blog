@@ -31,7 +31,7 @@ describe('UserController', function() {
      * GET /admin/users/new
      * Should render users/new.ejs
      */
-     it('should render "index" template on GET /admin/users', function(done) {
+    it('should render "index" template on GET /admin/users', function(done) {
         request(app).get('/admin/users').end(function(err, res) {
             if (err) return done(err);
             done()
@@ -63,119 +63,118 @@ describe('UserController', function() {
      * GET /admin/users/:id/edit
      * Should access User#find and render users/edit.ejs
      */
-    it('should access User#find and render "edit" template on GET /admin/users/:id/edit', function (done) {
+    it('should access User#find and render "edit" template on GET /admin/users/:id/edit', function(done) {
         var User = app.models.User;
 
         // Mock User#find
-        User.find = sinon.spy(function (id, callback) {
+        User.find = sinon.spy(function(id, callback) {
             callback(null, new User);
         });
 
         request(app)
-        .get('/admin/users/42/edit')
-        .end(function (err, res) {
-            res.statusCode.should.equal(200);
-            User.find.calledWith('42').should.be.true;
-            app.didRender(/admin\/users\/edit\.ejs$/i).should.be.true;
+            .get('/admin/users/42/edit')
+            .end(function(err, res) {
+                res.statusCode.should.equal(200);
+                User.find.calledWith('42').should.be.true;
+                app.didRender(/admin\/users\/edit\.ejs$/i).should.be.true;
 
-            done();
-        });
+                done();
+            });
     });
 
     /*
      * GET /admin/users/:id
      * Should render users/index.ejs
      */
-    it('should access User#find and render "show" template on GET /admin/users/:id', function (done) {
+    it('should access User#find and render "show" template on GET /admin/users/:id', function(done) {
         var User = app.models.User;
 
         // Mock User#find
-        User.find = sinon.spy(function (id, callback) {
+        User.find = sinon.spy(function(id, callback) {
             callback(null, new User);
         });
 
         request(app)
-        .get('/admin/users/42')
-        .end(function (err, res) {
-            res.statusCode.should.equal(200);
-            User.find.calledWith('42').should.be.true;
-            app.didRender(/admin\/users\/show\.ejs$/i).should.be.true;
-
-            done();
-        });
+            .get('/admin/users/42')
+            .end(function(err, res) {
+                res.statusCode.should.equal(200);
+                User.find.calledWith('42').should.be.true;
+                app.didRender(/admin\/users\/show\.ejs$/i).should.be.true;
+                done();
+            });
     });
 
     /*
      * GET /users/:id
      * Should render users/index.ejs
      */
-    it('should access User#find and render "show" template on GET /users/:id', function (done) {
+    it('should access User#find and render "show" template on GET /users/:id', function(done) {
         var User = app.models.User;
 
         // Mock User#find
-        User.find = sinon.spy(function (id, callback) {
+        User.find = sinon.spy(function(id, callback) {
             callback(null, new User);
         });
 
         request(app)
-        .get('/users/42')
-        .end(function (err, res) {
-            res.statusCode.should.equal(200);
-            User.find.calledWith('42').should.be.true;
-            app.didRender(/users\/show\.ejs$/i).should.be.true;
-
-            done();
-        });
+            .get('/users/42')
+            .end(function(err, res) {
+                res.statusCode.should.equal(200);
+                User.find.calledWith('42').should.be.true;
+                app.didRender(/users\/show\.ejs$/i).should.be.true;
+                done();
+            });
     });
 
     /*
      * POST /admin/users
      * Should access User#create when User is valid
      */
-    it('should access User#create on POST /admin/users with a valid User', function (done) {
-        var User = app.models.User
-        , user = new UserStub;
+    it('should access User#create on POST /admin/users with a valid User', function(done) {
+        var User = app.models.User,
+            user = new UserStub;
 
         // Mock User#create
-        User.create = sinon.spy(function (data, callback) {
+        User.create = sinon.spy(function(data, callback) {
             callback(null, user);
         });
 
         request(app)
-        .post('/admin/users')
-        .send({ "User": user })
-        .end(function (err, res) {
-            res.statusCode.should.equal(302);
-            User.create.calledWith(user).should.be.true;
-
-            done();
-        });
+            .post('/admin/users')
+            .send({
+                "User": user
+            })
+            .end(function(err, res) {
+                res.statusCode.should.equal(302);
+                User.create.calledWith(user).should.be.true;
+                done();
+            });
     });
 
     /*
      * POST /admin/users
      * Should fail when User is invalid
      */
-    it('should fail on POST /admin/users when User#create returns an error', function (done) {
-        var User = app.models.User
-        , user = new UserStub;
+    it('should fail on POST /admin/users when User#create returns an error', function(done) {
+        var User = app.models.User,
+            user = new UserStub;
 
         // Mock User#create
-        User.create = sinon.spy(function (data, callback) {
+        User.create = sinon.spy(function(data, callback) {
             callback(new Error, user);
         });
 
         request(app)
-        .post('/admin/users')
-        .send({ "User": user })
-        .end(function (err, res) {
-            res.statusCode.should.equal(200);
-            User.create.calledWith(user).should.be.true;
-
-            app.didFlash('error').should.be.true;
-
-            done();
-        });
+            .post('/admin/users')
+            .send({
+                "User": user
+            })
+            .end(function(err, res) {
+                res.statusCode.should.equal(200);
+                User.create.calledWith(user).should.be.true;
+                app.didFlash('error').should.be.true;
+                done();
+            });
     });
 
     /*
@@ -210,25 +209,28 @@ describe('UserController', function() {
      * PUT /admin/users/:id
      * Should not redirect when User is invalid
      */
-    it('should fail / not redirect on PUT /admin/users/:id with an invalid User', function (done) {
-        var User = app.models.User
-        , user = new UserStub;
+    it('should fail / not redirect on PUT /admin/users/:id with an invalid User', function(done) {
+        var User = app.models.User,
+            user = new UserStub;
 
-        User.find = sinon.spy(function (id, callback) {
+        User.find = sinon.spy(function(id, callback) {
             callback(null, {
                 id: 1,
-                updateAttributes: function (data, cb) { cb(new Error) }
+                updateAttributes: function(data, cb) {
+                    cb(new Error)
+                }
             });
         });
 
         request(app)
-        .put('/admin/users/1')
-        .send({ "User": user })
-        .end(function (err, res) {
-            res.statusCode.should.equal(200);
-            app.didFlash('error').should.be.true;
-
-            done();
-        });
+            .put('/admin/users/1')
+            .send({
+                "User": user
+            })
+            .end(function(err, res) {
+                res.statusCode.should.equal(200);
+                app.didFlash('error').should.be.true;
+                done();
+            });
     });
 });

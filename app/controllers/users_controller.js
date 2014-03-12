@@ -102,40 +102,40 @@ action(function index() {
     this.title = t('users_controller_client.action_index_title');
     User.all(function(err, users) {
         switch (params.format) {
-        case "json":
-            send({
-                code: 200,
-                data: users
-            });
-            break;
-        default:
-            render({
-                users: users
-            });
+            case "json":
+                send({
+                    code: 200,
+                    data: users
+                });
+                break;
+            default:
+                render({
+                    users: users
+                });
         }
     });
 });
 action(function show() {
     this.title = t('users_controller_client.action_show_title');
     switch (params.format) {
-    case "json":
-        send({
-            code: 200,
-            data: this.user
-        });
-        break;
-    default:
-        render();
+        case "json":
+            send({
+                code: 200,
+                data: this.user
+            });
+            break;
+        default:
+            render();
     }
 });
 action(function edit() {
     this.title = t('users_controller_client.action_edit_title');
     switch (params.format) {
-    case "json":
-        send(this.user);
-        break;
-    default:
-        render();
+        case "json":
+            send(this.user);
+            break;
+        default:
+            render();
     }
 });
 action(function update() {

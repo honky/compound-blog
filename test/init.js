@@ -9,14 +9,14 @@ global.getApp = function(done) {
 
     // Monkeypatch app#render so that it exposes the rendered view files
     app._render = app.render;
-    app.render = function (viewName, opts, fn) {
+    app.render = function(viewName, opts, fn) {
         app.renderedViews.push(viewName);
 
         // Deep-copy flash messages
         var flashes = opts.request.session.flash;
-        for(var type in flashes) {
+        for (var type in flashes) {
             app.flashedMessages[type] = [];
-            for(var i in flashes[type]) {
+            for (var i in flashes[type]) {
                 app.flashedMessages[type].push(flashes[type][i]);
             }
         }
@@ -25,10 +25,10 @@ global.getApp = function(done) {
     }
 
     // Check whether a view has been rendered
-    app.didRender = function (viewRegex) {
+    app.didRender = function(viewRegex) {
         var didRender = false;
-        app.renderedViews.forEach(function (renderedView) {
-            if(renderedView.match(viewRegex)) {
+        app.renderedViews.forEach(function(renderedView) {
+            if (renderedView.match(viewRegex)) {
                 didRender = true;
             }
         });
@@ -36,7 +36,7 @@ global.getApp = function(done) {
     }
 
     // Check whether a flash has been called
-    app.didFlash = function (type) {
+    app.didFlash = function(type) {
         return !!(app.flashedMessages[type]);
     }
 
