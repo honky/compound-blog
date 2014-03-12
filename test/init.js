@@ -4,7 +4,6 @@ process.env.NODE_ENV = "test";
 
 global.getApp = function(done) {
     var app = require('compound').createServer()
-    console.log(app.get('env'));
     app.renderedViews = [];
     app.flashedMessages = {};
 

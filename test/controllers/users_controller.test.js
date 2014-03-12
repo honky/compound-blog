@@ -31,7 +31,7 @@ describe('UserController', function() {
      * GET /admin/users/new
      * Should render users/new.ejs
      */
-     it('2 - should render "index" template on GET /admin/users', function(done) {
+     it('should render "index" template on GET /admin/users', function(done) {
         request(app).get('/admin/users').end(function(err, res) {
             if (err) return done(err);
             done()
@@ -41,7 +41,7 @@ describe('UserController', function() {
      * GET /admin/users
      * Should render users/index.ejs
      */
-    it('2 - should render "index" template on GET /users', function(done) {
+    it('should render "index" template on GET /users', function(done) {
         request(app).get('/users').end(function(err, res) {
             res.statusCode.should.equal(200);
             app.didRender(/users\/index\.ejs$/i).should.be.true;
@@ -52,7 +52,7 @@ describe('UserController', function() {
      * GET /users
      * Should render users/index.ejs
      */
-    it('3 - should render "index" template on GET /users', function(done) {
+    it('should render "index" template on GET /users', function(done) {
         request(app).get('/users').expect(200).end(function(err, res) {
             if (err) return done(err);
             done()

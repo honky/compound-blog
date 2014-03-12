@@ -38,7 +38,7 @@ action(function create() {
 
 action(function index() {
     this.title = 'Comments index';
-    console.log(params);
+    //console.log(params);
     if(params.page_id)
     {
         Comment.all({ "where": { "page_id" : params.page_id } }, function (err, comments) {

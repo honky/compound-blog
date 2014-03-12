@@ -21,7 +21,7 @@ action(function index() {
 });
 action(function top() {
     this.title = 'Pages Top';
-    console.log(params);
+    //console.log(params);
     var language2use = (req.session.language) ? req.session.language : "de";
     Page.all({
         "order": "created desc",
@@ -74,7 +74,7 @@ function loadPage() {
                     "page_id": page.id
                 }
             }, function(err, result) {
-                console.log("result", result);
+                //console.log("result", result);
                 page.comments_fetched = result;
                 done();
             });
@@ -83,7 +83,7 @@ function loadPage() {
                     "page_id": page.id
                 }
             }, function(err, result) {
-                console.log("result", result);
+                //console.log("result", result);
                 page.tags_fetched = result;
                 done();
             });
@@ -92,11 +92,11 @@ function loadPage() {
                     "page_id": page.id
                 }
             }, function(err, result) {
-                console.log("result", result);
+                //console.log("result", result);
                 page.categories_fetched = result;
                 next();
             });
-            console.log(page);
+            //console.log(page);
         }
     }.bind(this));
 }

@@ -3,7 +3,7 @@ before('protect from forgery', function() {
 	protectFromForgery('57b41767946asda921238e296d52cfa0fed709d927ff07');
 	var locale = req.session ? (req.session.language ? req.session.language : "de") : 'en';
 	req.session.language = locale;
-	console.log("setting locale: ", locale);
+	//console.log("setting locale: ", locale);
 	setLocale(locale);
 });
 

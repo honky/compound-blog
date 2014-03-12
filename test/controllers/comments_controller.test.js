@@ -41,9 +41,10 @@ describe('CommentController', function() {
      * GET /comments
      * Should render comments/index.ejs
      */
-    it('should render "index" template on GET /comments', function (done) {
+    it('should render "index" template on GET /admin/comments', function (done) {
         request(app)
         .get('/admin/comments')
+        .expect(200)
         .end(function (err, res) {
             res.statusCode.should.equal(200);
             app.didRender(/admin\/comments\/index\.ejs$/i).should.be.true;

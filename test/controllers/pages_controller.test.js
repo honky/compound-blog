@@ -4,7 +4,7 @@ var app, compound
 
 function PageStub () {
     return {
-        page_id: '',
+        page_id: '42',
         title: '',
         teaser: '',
         content: '',
