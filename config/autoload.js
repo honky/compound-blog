@@ -17,6 +17,16 @@ module.exports = function(compound) {
     ]
   }
 
+  if ('test' === compound.app.get('env')) {
+    developmentModules = [
+      'ejs-ext',
+      'seedjs',
+      'co-generators',
+      'marked',
+      'everyauth'
+    ]
+  }
+
   if (typeof window === 'undefined') {
     return defaultModules.concat(developmentModules).map(require);
   } else {

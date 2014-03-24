@@ -23,9 +23,7 @@ action(function index() {
 });
 
 action(function top() {
-    this.title = 'Posts Top5';
-    console.log(params);
-
+    this.title = 'Posts Top';
     var language2use = (req.session.language) ? req.session.language : "de";
 
     Post.all({

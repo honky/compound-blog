@@ -5,7 +5,7 @@ module.exports = {
     },
     test: {
         driver: 'sqlite3',
-        database: ':memory:'
+        database: 'db/website-test.sqlite3'
     },
     production: {
         driver: 'sqlite3',

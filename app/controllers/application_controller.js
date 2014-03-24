@@ -1,8 +1,8 @@
 before('protect from forgery', function() {
 	protectFromForgery('57b41767946asda921238e296d52cfa0fed709d927ff07');
+	//add domain depend rules here
 	var locale = req.session ? (req.session.language ? req.session.language : "de") : 'en';
 	req.session.language = locale;
-	//console.log("setting locale: ", locale);
 	setLocale(locale);
 });
 
@@ -42,7 +42,6 @@ function adminRequired() {
 
 	if (req.session) {
 		if (req.session.user) {
-			console.log(req.session.user);
 			if (req.session.user.isAdmin == true) {
 				isAdmin = true;
 			}

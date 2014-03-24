@@ -35,17 +35,13 @@ action('change_language', function() {
 action('verify_login', function() {
     this.title = 'verify_login';
     this.user = new User;
-    //console.log('req.body: ', req.body);
-    //console.log('req.body.length: ', req.body.length);
 
-    //if (req.body.length != undefined) {
     var userInDB = User.all({
         "where": {
             "name": req.body.name,
             "password": req.body.password
         }
     }, function(err, user) {
-        //console.log("Users found:", user);
         if (err || !user) {
             console.log("User found if!");
             if (!err && !user && params.format === 'json') {
@@ -53,7 +49,6 @@ action('verify_login', function() {
             }
             redirect('login');
         } else {
-            //console.log("User found else!", user, user.length);
             if (user == undefined || user[0].length == 0) {
                 flash('error', "wrong credentials or user not found.");
                 redirect('login');
@@ -62,13 +57,11 @@ action('verify_login', function() {
             if (req.session.user == undefined) {
                 req.session.user = {};
             }
-            //console.log(user[0]);
             req.session.user = user[0];
             req.session.user.language = user[0].language;
             render();
         }
     });
-    //}
 });
 action(function create() {
     User.create(req.body.User, function(err, user) {

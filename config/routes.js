@@ -1,10 +1,16 @@
 exports.routes = function(map) {
+
+	//landing page
+	map.root('posts#top');
+
 	map.resources('posts', {
 		only: ["index", "show", "top"]
 	});
+
 	map.resources('comments', {
 		only: ["index", "show", "new"]
 	});
+
 	map.resources('pages', function(page) {
 		page.all('/pages/top', 'pages#top', {
 			collection: true
@@ -13,6 +19,7 @@ exports.routes = function(map) {
 			only: ["index", "show"]
 		});
 	});
+
 	map.resources('users');
 	/*{
 		only: ["index", "show", "signup","update", "login", "logout", "new", "delete", "edit", "change_language"]
@@ -41,7 +48,7 @@ exports.routes = function(map) {
 	map.all('posts_top', 'posts#top', {
 		collection: true
 	});
-	map.root('posts#top');
+
 	map.namespace('admin', function(admin) {
 		admin.resources('users');
 		admin.resources('pages');
