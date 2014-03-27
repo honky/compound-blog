@@ -64,7 +64,7 @@ describe('PageController', function() {
     });
 
     /*
-     * GET /admin/pages/:id
+     * GET /pages/:id
      * Should render pages/index.ejs
      */
     it('should access Page#find and render "show" template on GET /admin/pages/:id', function(done) {
@@ -92,7 +92,6 @@ describe('PageController', function() {
             .end(function(err, res) {
                 res.statusCode.should.equal(200);
                 app.didRender(/pages\/top\.ejs$/i).should.be.true;
-
                 done();
             });
     });

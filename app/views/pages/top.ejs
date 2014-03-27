@@ -2,40 +2,23 @@
     <li><a href="/"><%= t('locale.home') %></a> <span class="divider">/</span></li>
     <li class="active"><a href="<%- pathTo.pages() %>"><%= t('pages_controller_client.pages') %></a> <span class="divider">/</span></li>
 </ul>
-
 <div class="page-header">
     <h1><%= t('pages_controller_client.action_top_title') %></h1>
 </div>
-
-
 <div class="row">
     <div class="col-md-12">
         <% if (pages.length > 0) { %>
-        <table class="table table-striped sortable">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Teaser</th>
-                    <th>Content</th>
-                    <th>language</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% pages.forEach(function (page) { %>
-                <tr>
-                    <td><strong><%- link_to('page #' + page.id, pathTo.page(page)) %></strong></td>
-                    <td> <%- page.title %> </td>
-                    <td> <%- page.teaser %> </td>
-                    <td> <%- page.content %> </td>
-                    <td> <%- page.language %> </td>
-                </tr>
-                <% }); %>
-            </tbody>
-        </table>
+        <% pages.forEach(function (page) { %>
+        <div class="container">
+            <h3> <%- page.title %>  </h3>
+            <p> <div class="flag flag-<%- page.language %>" style="float: left;"> </div> <i> <%- page.teaser %> </i> </p>
+            <p> <%- page.content %> <%- link_to('...', pathTo.page(page)) %> </p>
+        </div>
+        <% }); %>
+
         <% } else { %>
         <p class="alert alert-block alert-info">
-            <strong>No pages were found.</strong>
+        <strong>No pages were found.</strong>
         </p>
         <% } %>
     </div>
