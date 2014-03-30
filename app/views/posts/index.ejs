@@ -13,7 +13,6 @@
         <table class="table table-striped sortable">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Title</th>
                     <th>Teaser</th>
                     <th>Content</th>
@@ -26,13 +25,13 @@
                     <td><strong><%- link_to('post #' + post.id, pathTo.post(post)) %></strong></td>
                     <td> <%- post.title %> </td>
                     <td> <%- post.teaser %> </td>
-                    <td> <%- post.content %> </td>
-                    <td> <%- post.language %> </td>
+                    <td> <%- post.content.substring(0,50) %>   <%- link_to('...', pathTo.post(post)) %></td>
+                    <td> <div class="flag flag-<%- post.language %>" style="float: left;"> </div></td>
                 </tr>
                 <% }); %>
             </tbody>
         </table>
-        <% } else { %>
+        <% } else { %>T
         <p class="alert alert-block alert-info">
             <strong>No posts were found.</strong>
         </p>

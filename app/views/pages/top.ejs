@@ -6,13 +6,12 @@
     <h1><%= t('pages_controller_client.action_top_title') %></h1>
 </div>
 <div class="row">
-    <div class="col-md-12">
         <% if (pages.length > 0) { %>
         <% pages.forEach(function (page) { %>
-        <div class="container">
+        <div class="col-xs-4">
             <h3> <%- page.title %>  </h3>
             <p> <div class="flag flag-<%- page.language %>" style="float: left;"> </div> <i> <%- page.teaser %> </i> </p>
-            <p> <%- page.content %> <%- link_to('...', pathTo.page(page)) %> </p>
+            <p> <%- page.content.substring(0,500) %> <%- link_to('...', pathTo.page(page)) %> </p>
         </div>
         <% }); %>
 
@@ -21,5 +20,4 @@
         <strong>No pages were found.</strong>
         </p>
         <% } %>
-    </div>
 </div>

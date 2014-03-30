@@ -13,7 +13,6 @@
         <table class="table table-striped sortable">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Title</th>
                     <th>Teaser</th>
                     <th>Content</th>
@@ -23,11 +22,10 @@
             <tbody>
                 <% pages.forEach(function (page) { %>
                 <tr>
-                    <td><strong><%- link_to('page #' + page.id, pathTo.page(page)) %></strong></td>
                     <td> <%- page.title %> </td>
                     <td> <%- page.teaser %> </td>
-                    <td> <%- page.content %> </td>
-                    <td> <%- page.language %> </td>
+                    <td> <%- page.content.substring(0,50) %>   <%- link_to('...', pathTo.page(page)) %></td>
+                    <td> <div class="flag flag-<%- page.language %>" style="float: left;"> </div></td>
                 </tr>
                 <% }); %>
             </tbody>

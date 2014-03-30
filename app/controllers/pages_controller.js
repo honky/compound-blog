@@ -19,6 +19,16 @@ action(function index() {
         }
     });
 });
+action(function exportJson() {
+    this.title = 'Pages export';
+    Page.all(function(err, pages) {
+        send({
+            code: 200,
+            data: pages
+        });
+
+    });
+});
 action(function top() {
     this.title = 'Pages Top';
     var language2use = (req.session.language) ? req.session.language : "de";

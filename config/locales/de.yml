@@ -47,12 +47,12 @@ de:
     pages: "Seiten"
     action_show_title: "Seitendetails"
     action_index_title: "Seitenübersicht"
-    action_top_title: "Seiten - Aktuelles"
+    action_top_title: "Aktuelle Seiten"
   posts_controller_client:
-    post: "Eintrag"
-    posts: "Einträge"
+    post: "Blogeintrag"
+    posts: "Blogeinträge"
     action_show_title: "Eintragsdetails"
     action_index_title: "Einträgeübersicht"
-    action_top_title: "Einträge - Aktuelles"
+    action_top_title: "Aktuelle Blogeinträge"
 
 
